@@ -8,6 +8,7 @@
 </head>
 
 <?php
+require_once("../includes/view.inc.php");
 require_once("../includes/sessionConfig.php");
 ?>
 <style>
@@ -69,7 +70,9 @@ require_once("../includes/sessionConfig.php");
         </form>
 
     </div>
-
+    <?php
+    getError();
+    ?>
 </body>
 
 </html>

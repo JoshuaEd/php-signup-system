@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         require_once("view.inc.php"); // Error
         require_once("contr.inc.php"); // Form controler
 
+        // ERROR HANDLERS
         $error = [];
         if (isEmpty($username, $email, $password)) {
             $error["inputEmpty"] = "Fill all field.";
@@ -31,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         require_once("sessionConfig.php");
 
-        if (empty($error)) {
-            $_SESSION["error"] = $error;
+        if ($error) {
+            $_SESSION["error_signup"] = $error;
 
             header("Location: ../pages/signup.php");
         }
