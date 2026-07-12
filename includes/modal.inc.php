@@ -42,7 +42,4 @@ function setUser(object $pdo, string $username, string $email, string $password)
     $passCost = ["cost" => 12];
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT, $passCost);
     $stmt->execute(["username" => $username, "email" => $email, "pswd" => $hashedPassword]);
-
-    $stmt = null;
-    $pdo = null;
 }

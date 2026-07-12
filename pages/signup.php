@@ -1,3 +1,9 @@
+<?php
+require_once("../includes/sessionConfig.php");
+require_once("../includes/view.inc.php");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,10 +13,7 @@
     <title>Signup</title>
 </head>
 
-<?php
-require_once("../includes/view.inc.php");
-require_once("../includes/sessionConfig.php");
-?>
+
 <style>
     .con {
         width: 300px;
@@ -52,6 +55,18 @@ require_once("../includes/sessionConfig.php");
         border-radius: 4px;
         cursor: pointer;
     }
+
+    .success {
+        color: green;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .error {
+        color: red;
+        font-weight: bold;
+        text-align: center;
+    }
 </style>
 
 <body>
@@ -59,19 +74,14 @@ require_once("../includes/sessionConfig.php");
     <div class="con">
 
         <form action="../includes/formhandler.php" method="post">
-            <label for="username">Username:</label>
-            <input type="text" name="username" placeholder="Username">
-            <label for="email">Email:</label>
-            <input type="email" name="email" placeholder="Email">
-            <label for="password">Password:</label>
-            <input type="password" name="password" placeholder="Password">
-
+            <?php signupData(); ?>
             <input type="submit" value="Sign Up">
         </form>
 
     </div>
     <?php
     getError();
+
     ?>
 </body>
 

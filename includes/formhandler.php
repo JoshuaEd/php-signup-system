@@ -9,39 +9,51 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     try {
         require_once("dbh.inc.php"); // Connection
         require_once("modal.inc.php"); // DB Query
-        require_once("view.inc.php"); // Error
         require_once("contr.inc.php"); // Form controler
 
         // ERROR HANDLERS
-        $error = [];
+        $errors = [];
         if (isEmpty($username, $email, $password)) {
-            $error["inputEmpty"] = "Fill all field.";
+            $errors["inputEmpty"] = "Fill in all field.";
         }
 
         if (invalidEmail($email)) {
-            $error["invalidEmail"] = "Please enter a valid email.";
+            $errors["invalidEmail"] = "Please enter a valid email.";
         }
 
         if (isUsernameTaken($pdo, $username)) {
-            $error["usernameTaken"] = "Sorry, username is taken.";
+            $errors["usernameTaken"] = "Sorry, username is taken.";
         }
 
         if (existingEmail($pdo, $email)) {
-            $error["emailExists"] = "Email already exist.";
+            $errors["emailExists"] = "Email already exist.";
         }
 
         require_once("sessionConfig.php");
 
-        if ($error) {
-            $_SESSION["error_signup"] = $error;
+        // EFFOR LOOPS FROM VIEW FILE
+        if ($errors) {
+            $_SESSION["error"] = $errors;
 
-            header("Location: ../pages/signup.php");
+            $userData = [
+                "username" => $username,
+                "email" => $email,
+               
+            ];
+            $_SESSION["userData"] = $userData;
+            header("Location: ../pages/signup.php?signup=error ");
+            die();
         }
-        header("Location: ../pages/signup.php");
+
         createUser($pdo, $username, $email, $password);
+        header("Location: ../pages/signup.php?signup=success");
+
+        $stmt = null;
+        $pdo = null;
     } catch (PDOException $e) {
         die("Something went wrong... " . $e->getMessage());
     }
 } else {
-    header("Location: ../pages/login.php");
+    header("Location: ../pages/signup.php");
+    die();
 }
