@@ -24,6 +24,7 @@ require_once("../includes/sessionConfig.php");
         display: block;
         margin-top: 0em;
         unicode-bidi: isolate;
+        padding: 1rem;
     }
 
     label {
