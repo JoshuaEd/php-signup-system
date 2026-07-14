@@ -20,7 +20,7 @@
     form {
         display: block;
         margin-top: 0em;
-        unicode-bidi: isolate;
+
         padding: 1rem;
     }
 

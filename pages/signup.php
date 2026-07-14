@@ -27,7 +27,7 @@ require_once("../includes/view.inc.php");
     form {
         display: block;
         margin-top: 0em;
-        unicode-bidi: isolate;
+
         padding: 1rem;
     }
 
