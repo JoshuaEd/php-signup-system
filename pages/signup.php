@@ -74,7 +74,10 @@ require_once("../includes/view.inc.php");
     <div class="con">
 
         <form action="../includes/formhandler.php" method="post">
-            <?php signupData(); ?>
+            <?php
+            // Calls the signupData function to generate the signup form fields in Views file.
+            signupData();
+            ?>
             <input type="submit" value="Sign Up">
         </form>
 
