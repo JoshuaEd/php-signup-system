@@ -37,6 +37,7 @@
         margin-bottom: 10px;
         border: 1px solid #ccc;
         border-radius: 4px;
+        display: block;
     }
 
     input[type="submit"] {
